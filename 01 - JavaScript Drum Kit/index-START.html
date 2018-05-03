@@ -58,7 +58,94 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-
+    document.addEventListener("keydown", function(event) {
+        let key = event.which.toString() || event.keyCode.toString();
+        let element;
+        
+        switch (key) {
+            case "65":
+                element = document.querySelectorAll("[data-key='65']");
+                element[0].classList.add("playing");
+                element[1].currentTime = 0;
+                element[1].play();
+                setTimeout(function(){
+                    element[0].classList.remove("playing");
+                }, 100);
+                break;
+            case "83":
+                element = document.querySelectorAll("[data-key='83']");
+                element[0].classList.add("playing");
+                element[1].currentTime = 0;
+                element[1].play();
+                setTimeout(function(){
+                    element[0].classList.remove("playing");
+                }, 100);
+                break;
+            case "68":
+                element = document.querySelectorAll("[data-key='68']");
+                element[0].classList.add("playing");
+                element[1].currentTime = 0;
+                element[1].play();
+                setTimeout(function(){
+                    element[0].classList.remove("playing");
+                }, 100);
+                break;
+            case "70":
+                element = document.querySelectorAll("[data-key='70']");
+                element[0].classList.add("playing");
+                element[1].currentTime = 0;
+                element[1].play();
+                setTimeout(function(){
+                    element[0].classList.remove("playing");
+                }, 100);
+                break;
+            case "71":
+                element = document.querySelectorAll("[data-key='71']");
+                element[0].classList.add("playing");
+                element[1].currentTime = 0;
+                element[1].play();
+                setTimeout(function(){
+                    element[0].classList.remove("playing");
+                }, 100);
+                break;
+            case "72":
+                element = document.querySelectorAll("[data-key='72']");
+                element[0].classList.add("playing");
+                element[1].currentTime = 0;
+                element[1].play();
+                setTimeout(function(){
+                    element[0].classList.remove("playing");
+                }, 100);
+                break;
+            case "74":
+                element = document.querySelectorAll("[data-key='74']");
+                element[0].classList.add("playing");
+                element[1].currentTime = 0;
+                element[1].play();
+                setTimeout(function(){
+                    element[0].classList.remove("playing");
+                }, 100);
+                break;
+            case "75":
+                element = document.querySelectorAll("[data-key='75']");
+                element[0].classList.add("playing");
+                element[1].currentTime = 0;
+                element[1].play();
+                setTimeout(function(){
+                    element[0].classList.remove("playing");
+                }, 100);
+                break;
+            case "76":
+                element = document.querySelectorAll("[data-key='76']");
+                element[0].classList.add("playing");
+                element[1].currentTime = 0;
+                element[1].play();
+                setTimeout(function(){
+                    element[0].classList.remove("playing");
+                }, 100);
+                break;
+        }
+    })
 </script>
 
 

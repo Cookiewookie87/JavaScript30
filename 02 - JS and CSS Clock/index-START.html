@@ -62,12 +62,39 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.05s;
     }
 
   </style>
 
   <script>
 
+      let h = 0;
+      let m = 0;
+      let s = 0;
+      
+      let hourHand = "";
+      let minHand = "";
+      let secHand = "";
+      
+      function getTime() {
+          
+          let time = new Date();
+          h = time.getHours();
+          m = time.getMinutes();
+          s = time.getSeconds();
+          
+          hourHand = document.getElementsByClassName("hand")[0].setAttribute('style','transform:rotate(90deg)');
+          minHand = document.getElementsByClassName("hand")[1].setAttribute('style','transform:rotate(190deg)');
+          secHand = document.getElementsByClassName("hand")[2].setAttribute('style','transform:rotate(30deg)');
+          
+          console.log(h + ":" + m + ":" + s);
+          setTimeout(getTime, 1000);
+      }
+      getTime();
+      
 
   </script>
 </body>

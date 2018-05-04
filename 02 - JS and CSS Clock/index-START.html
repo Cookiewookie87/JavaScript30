@@ -65,6 +65,7 @@
       transform-origin: 100%;
       transform: rotate(90deg);
       transition: all 0.05s;
+        transition-timing-function: cubic-bezier(0, 0, 0, 2.21);
     }
 
   </style>
@@ -74,10 +75,17 @@
       let h = 0;
       let m = 0;
       let s = 0;
+   
+      let hourPos = 0;
+      let minPos = 0;
+      let secPos = 0;
       
-      let hourHand = "";
-      let minHand = "";
-      let secHand = "";
+      const hourHand = document.querySelector(".hour-hand");
+      const minHand = document.querySelector(".min-hand");
+      const secHand = document.querySelector(".second-hand");
+      console.log(hourHand);
+      console.log(minHand);
+      console.log(secHand);
       
       function getTime() {
           
@@ -85,12 +93,24 @@
           h = time.getHours();
           m = time.getMinutes();
           s = time.getSeconds();
+
           
-          hourHand = document.getElementsByClassName("hand")[0].setAttribute('style','transform:rotate(90deg)');
-          minHand = document.getElementsByClassName("hand")[1].setAttribute('style','transform:rotate(190deg)');
-          secHand = document.getElementsByClassName("hand")[2].setAttribute('style','transform:rotate(30deg)');
+          secPos = (s * (360 / 60)) + 90;
+          //console.log(secPos);
+          minPos = (6 * m) + 90;
+          //console.log(minPos);
+          hourPos = (0.5 * (60 * h + m)) + 90;
+          //console.log(hourPos);
           
-          console.log(h + ":" + m + ":" + s);
+          hourHand.style.transform = `rotate(${hourPos}deg)`;
+          minHand.style.transform = `rotate(${minPos}deg)`;
+          secHand.style.transform = `rotate(${secPos}deg)`;   
+     
+          console.log(hourHand);
+          console.log(minHand);
+          console.log(secHand);
+
+          //console.log(h + ":" + m + ":" + s);
           setTimeout(getTime, 1000);
       }
       getTime();

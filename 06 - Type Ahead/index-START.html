@@ -8,10 +8,8 @@
 <body>
 
   <form class="search-form">
-    <input type="text" class="search" placeholder="City or State">
+    <input type="text" class="search" placeholder="Filter for City or State">
     <ul class="suggestions">
-      <li>Filter for a city</li>
-      <li>or a state</li>
     </ul>
   </form>
 <script>
@@ -57,7 +55,6 @@
     fetch(endpoint)
         .then(blob => blob.json())
         .then(data => cities.push(...data));
-    console.log(cities);
     
     function findMatch (wordToMatch, cities) {
         return cities.filter(place => {
@@ -67,12 +64,27 @@
     }
     
     function displayMatch (e) {
-        console.log(this.value); 
         const arr = findMatch(this.value, cities);
+        
+        if (this.value === "") {
+            return suggestions.innerHTML = "";
+        }
+        
+        if (arr.length === 0){
+            return suggestions.innerHTML = `
+                <li>
+                    <span>Ups, no findings</span>
+                </li>
+            `;
+        }
+        
         const htmlGenerator = arr.map(place => {
+            const regex = new RegExp(this.value, "gi");
+            const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
+            const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
             return `
                 <li>
-                    <span class="name">${place.city}, ${place.state}</span>
+                    <span class="name">${cityName}, ${stateName}</span>
                     <span class="population">${place.population}</span>
                 </li>
             `;

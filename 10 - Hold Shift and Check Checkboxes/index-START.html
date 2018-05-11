@@ -99,6 +99,26 @@
   </div>
 
 <script>
+    
+    const radioBTN = Array.from(document.querySelectorAll("input[type=checkbox]"));
+    radioBTN.forEach(btn => btn.addEventListener("click", function() {
+        console.log(this);
+        console.log(radioBTN);
+        console.log(radioBTN.indexOf(this));
+        console.log(this.checked);
+        
+        const clickedIndex = radioBTN.indexOf(this);
+        
+        if (this.checked){
+            this.addEventListener("keydown", function() {
+                if (event.shiftKey == 1){
+                    console.log("Shift");
+                }
+            })
+        }
+    }));
+    
+    
 </script>
 </body>
 </html>

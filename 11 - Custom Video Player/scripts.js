@@ -34,6 +34,10 @@ function scrub(e) {
     video.currentTime = scrubTime;
 }
 function goFullScreen(element) {
+    //console.log(element);
+    //console.log(element.requestFullscreen);
+    //console.log(element.mozRequestFullScreen);
+    //console.log(element.webkitRequestFullscreen);
     if (element.requestFullscreen) {
         player.requestFullscreen();
     } else if (element.mozRequestFullScreen) {

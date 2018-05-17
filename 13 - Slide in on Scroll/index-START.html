@@ -63,7 +63,11 @@
       
     function checkSlide(e){
         sliderImages.forEach(sliderImage => {
+            
+            //Pixels where image should appear
             const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+            
+            //Image bottom pixels
             const imageBottom = sliderImage.offsetTop + sliderImage.height;
             const isHalfShown = slideInAt > sliderImage.offsetTop;
             const isNotScrolledPast = window.scrollY < imageBottom;
@@ -76,7 +80,7 @@
         });
     }
       
-    window.addEventListener("scroll", debounce(checkSlide));
+    window.addEventListener("scroll", checkSlide);
     
     
 

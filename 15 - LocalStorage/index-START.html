@@ -22,14 +22,18 @@
     <form class="add-items">
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
+      <input type="reset" value="Clear all">
+      <input type="button" name="check" value="Check all">
+      <input type="button" name="uncheck" value="Uncheck all">
     </form>
   </div>
 
 <script>
     const addItems = document.querySelector('.add-items');
     const itemsList = document.querySelector('.plates');
-    const items = JSON.parse(localStorage.getItem("items")) || []; // gets local storage from browser with key items and parse it to object, if empty than returns empty array
-    console.log(items);
+    let items = JSON.parse(localStorage.getItem("items")) || []; // gets local storage from browser with key items and parse it to object, if empty than returns empty array // changed from const to let, so i can empty array
+    const reset = document.querySelector("input[type=reset]");
+    const checkUncheck = document.querySelectorAll("input[type=button]");
 
     function addItem(e) {
         e.preventDefault(); // prevents default - when submiting page refreshes
@@ -63,10 +67,27 @@
         localStorage.setItem("items", JSON.stringify(items));
         populateList(items, itemsList);
     }
+    function resetAll() {
+        localStorage.clear();
+        items = [];
+        populateList(items, itemsList);
+    }
+    // https://stef.ninja/javascript30-day-15/
+    function checkAndUnceheckIt(e) {
+        if (e.target.name === "check") {
+            items.map(item => item.done = true);
+        } else {
+            items.map(item => item.done = false);
+        }
+        localStorage.setItem("items", JSON.stringify(items));
+        populateList(items, itemsList);
+    }
     
     addItems.addEventListener("submit", addItem)
     itemsList.addEventListener("click", toggleDone); //event delegation. The element that is allways on page when reloads is UI, LI are its children. So UI as parent tells children what to do with click, they tell to existing children or if they have any new ones. (rather than listening click on items directly, we can look for somebody who will be on the page of the time listening). Or in other words we say: hey .plates, when your children inputs get clicked, can you please pass this click on them? We are just telling you because you are the one responsible here. Tell this to your children or childrens you will make in the future
-
+    reset.addEventListener("click", resetAll);
+    checkUncheck.forEach((chckBtn, index) => chckBtn.addEventListener("click", checkAndUnceheckIt));
+    populateList(items, itemsList);
 </script>
 
 

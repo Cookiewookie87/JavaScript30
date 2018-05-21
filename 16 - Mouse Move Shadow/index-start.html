@@ -35,6 +35,32 @@
   </style>
 
 <script>
+    
+    const hero = document.querySelector(".hero");
+    const text = hero.querySelector("h1");
+    const base = 100; // 100px - we want 100 because than we have shadow in range -50 and +50
+    
+    function shadow(e) {
+        const width = hero.offsetWidth;
+        const height = hero.offsetHeight;
+        let x = e.offsetX;
+        let y = e.offsetY;
+        
+        
+        if (this !== e.target) { // this refers to .hero, e.target refers to h1. If mouse is over h! than calculate below
+            x = x + e.target.offsetLeft;
+            y = y + e.target.offsetTop;
+        }
+        
+        const xBase = Math.round((x / width * base) - (base / 2));
+        const yBase = Math.round((y / height * base) - (base / 2));
+
+        text.style.textShadow = `${xBase}px ${yBase}px 0 rgba(0,0,0,1)`;
+        
+    }
+    
+    hero.addEventListener("mousemove", shadow)
+    
 </script>
 </body>
 </html>

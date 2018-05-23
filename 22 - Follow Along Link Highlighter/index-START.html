@@ -26,7 +26,24 @@
     </div>
 
   <script>
-    // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+      // Get all the links to trigger
+      const trigger = document.querySelectorAll("a");
+      // Create highlight with JS (.createElement, add it to the DOM .append)
+      const highlight = document.createElement("span"); // creates HTML tag
+      highlight.classList.add("highlight"); // adds class to thet element tag
+      document.body.append(highlight); // add that new element tag to DOM (to last place)
+      
+      // get width, height, position of all items that were hovered (.getBoundingClientRect)
+      function highlightLink() {
+          const linkCoords = this.getBoundingClientRect();
+          highlight.style.width = `${linkCoords.width}px`;
+          highlight.style.height = `${linkCoords.height}px`;
+          highlight.style.transform = `translate(${linkCoords.left + window.scrollX}px, ${linkCoords.top + window.scrollY}px)`;
+      }
+      // Note: when scrolling the position of hover gets offset, add that scroll (create object with height, hidth, top and left)
+      // Listen to every link and set mouse over and start fn for highlight
+      trigger.forEach(trigg => trigg.addEventListener("mouseenter", highlightLink))
+      
   </script>
 </body>
 </html>
